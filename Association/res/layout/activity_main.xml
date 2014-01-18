@@ -1,0 +1,48 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TableLayout01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+     >
+
+    <TableRow 
+        android:id="@+id/StringMenu01"
+        android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:gravity="center">
+        
+        <Button
+            android:id="@+id/ButtonNewGame"
+            android:layout_height="wrap_content"
+            android:text="@+id/ButtonNewGame"
+            android:layout_width="50pt">
+        </Button>
+        
+        <Button 
+            android:id="@+id/ButtonContinue"
+            android:layout_height="wrap_content"
+            android:text="@+id/ButtonContinue"
+            android:layout_width="50pt"
+            />
+      </TableRow>
+        
+        <TableRow 
+        android:id="@+id/StringMenu02"
+        android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:gravity="center">
+        
+        <Button
+            android:id="@+id/Regulations"
+            android:layout_height="wrap_content"
+            android:text="@+id/Regulations"
+            android:layout_width="50pt">
+        </Button>
+        <Button
+            android:id="@+id/Information"
+            android:layout_height="wrap_content"
+            android:text="@+id/Information"
+            android:layout_width="50pt">
+        </Button>
+    </TableRow>
+
+</TableLayout>
