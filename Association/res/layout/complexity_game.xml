@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LayoutComplexity_game"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/wood_texture"
+    >
+
+<Button
+    android:id="@+id/ButtonEasy"
+    android:text="@string/ButtonEasy"
+    android:layout_height="60dp"
+    android:layout_width="160dp"
+    android:background="@drawable/pergament"
+    android:textStyle="normal"
+    android:layout_marginBottom="10dp"
+            >
+</Button>
+
+<Button
+    android:id="@+id/ButtonMedium"
+    android:text="@string/ButtonMedium"
+    android:layout_height="60dp"
+    android:layout_width="160dp"
+    android:background="@drawable/pergament"
+    android:textStyle="normal"
+    android:layout_marginBottom="10dp"
+            >
+</Button>
+
+<Button
+    android:id="@+id/ButtonHard"
+    android:text="@string/ButtonHard"
+    android:layout_height="60dp"
+    android:layout_width="160dp"
+    android:background="@drawable/pergament"
+    android:textStyle="normal"
+    android:layout_marginBottom="10dp"
+            >
+</Button>
+</LinearLayout>

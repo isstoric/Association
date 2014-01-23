@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LayoutViewGame"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/wood_texture"
+    >
+    
+<TableRow 
+        android:id="@+id/StringGame"
+        android:layout_height="fill_parent"
+		android:layout_width="fill_parent"
+		android:gravity="center"
+		android:layout_marginBottom="10sp"
+        >
+        
+        <Button
+            android:id="@+id/Window10"
+            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:background="@drawable/pergament"
+            android:textStyle="normal"
+            android:layout_marginRight="2sp"
+            >
+        </Button>
+
+        
+        <Button
+            android:id="@+id/Window11"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/pergament"
+            android:textStyle="bold"
+            android:layout_marginRight="10sp"/>
+        
+         <Button
+            android:id="@+id/Window20"
+            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:background="@drawable/pergament"
+            android:textStyle="normal"
+            android:layout_marginRight="2sp"
+            >
+        </Button>
+        
+        <Button
+            android:id="@+id/Window21"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/pergament"
+            android:textStyle="bold"
+            />
+
+        <Button
+            android:id="@+id/ButtonTimer"
+            android:text="Timer"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/pergament"
+            android:textStyle="bold"
+            android:layout_marginLeft="45sp"
+            android:layout_marginRight="-45sp"
+            />
+        
+      </TableRow>
+        
+    <TableRow 
+    android:id="@+id/StringGame2"
+    android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+	android:gravity="center"
+	android:layout_marginLeft="-20sp"
+	android:layout_marginRight="20sp"
+	android:layout_marginBottom="10sp">
+
+             <Button
+            android:id="@+id/Window30"
+            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:background="@drawable/pergament"
+            android:textStyle="normal"
+            android:layout_marginRight="2sp"
+            >
+        </Button>
+
+             <Button
+                 android:id="@+id/Window31"
+                 android:layout_width="80dp"
+                 android:layout_height="80dp"
+                 android:layout_marginRight="10sp"
+                 android:background="@drawable/pergament"
+                 android:textStyle="bold" />
+         
+         <Button
+            android:id="@+id/Window40"
+            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:background="@drawable/pergament"
+            android:textStyle="normal"
+            android:layout_marginRight="2sp">
+        </Button>
+        
+        <Button
+            android:id="@+id/Window41"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/pergament"
+            android:textStyle="bold"
+            />
+        
+        </TableRow>
+        
+     <TableRow 
+    android:id="@+id/StringMenu"
+    android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+	android:gravity="center"
+	android:layout_marginBottom="10sp">
+
+             <Button
+            android:id="@+id/ButtonRegulations"
+            android:text="@string/ButtonRegulation"
+            android:layout_height="40dp"
+            android:layout_width="80dp"
+            android:background="@drawable/pergament"
+            android:textStyle="normal"
+            android:layout_marginLeft="-150sp"
+            android:layout_marginRight="150sp"
+            >
+        </Button>
+
+        <Button
+            android:id="@+id/ButtonMusik"
+            android:text="@string/ButtonMusic"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="150sp"
+            android:layout_marginRight="-150sp"
+            android:background="@drawable/pergament"
+            android:textStyle="bold" />
+	</TableRow>
+</TableLayout>
