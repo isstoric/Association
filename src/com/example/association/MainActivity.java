@@ -1,9 +1,13 @@
 package com.example.association;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +15,8 @@ import android.view.Menu;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-
+	SharedPreferences settings;
+	Button ButtonContinue;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +28,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		Button ButtonNewGame = (Button) findViewById(R.id.ButtonNewGame);
 	    ButtonNewGame.setOnClickListener(this);
 	    
-	    Button ButtonContinue = (Button) findViewById(R.id.ButtonContinue);
+	    ButtonContinue = (Button) findViewById(R.id.ButtonContinue);
 	    ButtonContinue.setOnClickListener(this);
 	    
 	    Button ButtonRegulations = (Button) findViewById(R.id.ButtonRegulations);
@@ -35,24 +40,33 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	    Button ButtonStatistics = (Button) findViewById(R.id.ButtonStatistics);
 	    ButtonStatistics.setOnClickListener(this);
 	    
+	    Button ButtonMusic = (Button) findViewById(R.id.ButtonMusic);
+	    ButtonMusic.setOnClickListener(this);
+	    
+	    settings = getSharedPreferences(Config.APP_PREFERENCES, Context.MODE_PRIVATE);
+	    if(!settings.contains(Config.APP_PREFERENCES_LEVEL)){
+	    	ButtonContinue.setEnabled(false);
+	    }	
+	    if(!settings.contains(Config.APP_PREFERENCES_SOUND)){
+	    	Editor editor = settings.edit();
+			editor.putBoolean(Config.APP_PREFERENCES_SOUND, Config.SOUND_ON);
+			editor.apply();
+	    }	 
+	    
 	}
-
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		// Inflate the menu; this adds items to the action bar if it is present.
-//		getMenuInflater().inflate(R.menu.main, menu);
-//		return true;
-//	}
-
-//	@Override
-//	public void onClick(View v) {
-//		// TODO Auto-generated method stub
-//		Intent intent=new Intent();
-//				intent.setClass(this, ComplexityGames.class);
-//				startActivity(intent);
-//	}
 	
-	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		Log.d("MainActivity","level:"+settings.getAll());
+		
+		if(settings.contains(Config.APP_PREFERENCES_LEVEL)){
+	    	ButtonContinue.setEnabled(true);
+	    }
+	}
+		
 	
 	@Override
 	public void onClick(View v) {
@@ -86,6 +100,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
 				break;
 			case R.id.ButtonStatistics:
 				//статистика
+				break;
+			case R.id.ButtonMusic:
+				if(settings.getBoolean(Config.APP_PREFERENCES_SOUND, true)){
+					Editor editor = settings.edit();
+					editor.putBoolean(Config.APP_PREFERENCES_SOUND, Config.SOUND_OFF);
+					editor.apply();
+					//картиночку поменять надо бы
+					}
+				else{
+					Editor editor = settings.edit();
+					editor.putBoolean(Config.APP_PREFERENCES_SOUND, Config.SOUND_ON);
+					editor.apply();
+				}
 				break;
 			
 		}

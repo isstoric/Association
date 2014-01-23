@@ -93,7 +93,7 @@
                 />
 
             <Button
-                android:id="@+id/Musik"
+                android:id="@+id/ButtonMusic"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginLeft="100dp"
