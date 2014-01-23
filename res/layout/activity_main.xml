@@ -1,0 +1,107 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TableLayout01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/wood_texture"
+    >
+
+    <TableRow 
+        android:id="@+id/StringMenu01"
+        android:layout_height="fill_parent"
+		android:layout_width="fill_parent"
+		android:gravity="center"
+		android:layout_marginBottom="10dp"
+        >
+        
+        <Button
+            android:id="@+id/ButtonNewGame"
+            android:text="@string/ButtonNewGame"
+            android:layout_height="80dp"
+            android:layout_width="120dp"
+            android:background="@drawable/pergament"
+            android:textStyle="normal"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="-10dp"
+            
+            >
+        </Button>
+        
+        <Button
+            android:id="@+id/ButtonContinue"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:text="@string/ButtonContinue" 
+            android:background="@drawable/pergament"
+            android:textStyle="bold"
+            android:layout_marginRight="-10dp"
+            android:layout_marginLeft="10dp"
+           
+            />
+
+      </TableRow>
+      
+     <TableRow 
+        android:id="@+id/StringMenu02"
+        android:layout_height="fill_parent"
+		android:layout_width="fill_parent"
+		android:gravity="center"
+		android:layout_marginBottom="10dp"
+	>
+
+            <Button
+                android:id="@+id/ButtonRegulations"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:background="@drawable/pergament"
+                android:text="@string/ButtonRegulation" 
+                android:textStyle="italic"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="-10dp"
+                />
+
+            <Button
+                android:id="@+id/ButtonInformation"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:background="@drawable/pergament"
+                android:text="@string/ButtonInformation" 
+                android:layout_marginRight="-10dp"
+                android:layout_marginLeft="10dp"
+                />
+
+    </TableRow>
+
+      <TableRow 
+        android:id="@+id/StringMenu03"
+        android:layout_height="fill_parent"
+		android:layout_width="fill_parent"
+		android:gravity="center"
+		android:layout_marginBottom="10dp"
+	>
+
+            <Button
+                android:id="@+id/ButtonStatistics"
+                android:layout_width="80dp"
+	           	android:layout_marginRight="100dp"
+	           	android:layout_marginLeft="-100dp"
+                android:layout_height="80dp"
+                android:background="@drawable/pergament"
+                android:text="@string/ButtonStatistics" 
+                android:textStyle="italic"
+                />
+
+            <Button
+                android:id="@+id/Musik"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="-100dp"
+                android:background="@drawable/pergament"
+                android:text="@string/ButtonMusic"
+                />
+
+    </TableRow>
+     
+       </TableLayout>

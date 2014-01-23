@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Association</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="ButtonNewGame">Новая игра</string>
+    <string name="ButtonContinue">Продолжить</string>
+    <string name="ButtonRegulation">Правила</string>
+    <string name="ButtonInformation">О программе</string>
+    <string name="ButtonEasy">Легкая</string>
+    <string name="ButtonMedium">Средняя</string>
+    <string name="ButtonHard">Сложная</string>
+    <string name="TextRegulations">olololo</string>
+    <string name="ButtonStatistics">Статистика</string>
+    <string name="ButtonMusic">Музыка</string>
+    
+    
+    
+
+</resources>
