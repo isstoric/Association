@@ -51,7 +51,7 @@ public class DataBaseLogic {
      *
      * @return <ul>
      * <li><b>true</b>, игра была остановлена на каком-то
-     * уровне;
+     * уровне;</li>
      * <li><b>false</b>, уровень должен сформироваться с
      * нуля;</li></ul>
      */
@@ -130,7 +130,8 @@ public class DataBaseLogic {
     			idRandomAssociation = (int) (Math.random() * cursorFindNotUsedAssociation.getCount());
     			cursorFindNotUsedAssociation.moveToFirst();
         		cursorFindNotUsedAssociation.moveToPosition(idRandomAssociation);
-        		idRandomAssociation++;//чтобы не смещался индекс
+//        		idRandomAssociation++;//чтобы не смещался индекс
+        		idRandomAssociation = cursorFindNotUsedAssociation.getInt(cursorFindNotUsedAssociation.getColumnIndex(ID_ASSOCIATION));
         		randomAssociation = cursorFindNotUsedAssociation.getString(cursorFindNotUsedAssociation.getColumnIndex(ASSOCIATION_PICTURES));
        		 	Log.d("MainActivity","idRandomAssociation"+idRandomAssociation);
        		 	Log.d("MainActivity","randomAssociation"+randomAssociation);
@@ -196,32 +197,32 @@ public class DataBaseLogic {
         }
         return associationPictures;
     }
-    
-    public ArrayList<ArrayList<String>> qwe() {
-        ArrayList<String> first = new ArrayList<String>();
-        ArrayList<String> second = new ArrayList<String>();
-        ArrayList<String> third = new ArrayList<String>();
-        ArrayList<String> fourth = new ArrayList<String>();
-        ArrayList<ArrayList<String>> count = new ArrayList<ArrayList<String>>();
-           String query = "select * from Used_pictures";
-           Cursor cursor = stateOfGameDatabase.rawQuery(query, null);
-     cursor.moveToFirst();
-     do {
-      first.add(cursor.getString(cursor.getColumnIndex(USED_FIRST_COUPLE)));
-      second.add(cursor.getString(cursor.getColumnIndex(USED_SECOND_PICTURES)));
-      third.add(cursor.getString(cursor.getColumnIndex(USED_ID_ASSOCIATION)));
-      fourth.add(cursor.getString(cursor.getColumnIndex(USED_COUNT_PICTURES)));
-     } while (cursor.moveToNext());
-     count.add(new ArrayList<String>());
-     count.add(new ArrayList<String>());
-     count.add(new ArrayList<String>());
-     count.add(new ArrayList<String>());
-     count.add(first);
-     count.add(second);
-     count.add(third);
-     count.add(fourth);
-           return count;
-       }
+//    
+//    public ArrayList<ArrayList<String>> qwe() {
+//        ArrayList<String> first = new ArrayList<String>();
+//        ArrayList<String> second = new ArrayList<String>();
+//        ArrayList<String> third = new ArrayList<String>();
+//        ArrayList<String> fourth = new ArrayList<String>();
+//        ArrayList<ArrayList<String>> count = new ArrayList<ArrayList<String>>();
+//           String query = "select * from Used_pictures";
+//           Cursor cursor = stateOfGameDatabase.rawQuery(query, null);
+//     cursor.moveToFirst();
+//     do {
+//      first.add(cursor.getString(cursor.getColumnIndex(USED_FIRST_COUPLE)));
+//      second.add(cursor.getString(cursor.getColumnIndex(USED_SECOND_PICTURES)));
+//      third.add(cursor.getString(cursor.getColumnIndex(USED_ID_ASSOCIATION)));
+//      fourth.add(cursor.getString(cursor.getColumnIndex(USED_COUNT_PICTURES)));
+//     } while (cursor.moveToNext());
+//     count.add(new ArrayList<String>());
+//     count.add(new ArrayList<String>());
+//     count.add(new ArrayList<String>());
+//     count.add(new ArrayList<String>());
+//     count.add(first);
+//     count.add(second);
+//     count.add(third);
+//     count.add(fourth);
+//           return count;
+//       }
 
     /**
      * Получает лист из экстра картинок для всего уровня.
@@ -351,10 +352,8 @@ public class DataBaseLogic {
     public int countAllPictures() {
         int count = 0;
         String query = "select * from Association";
-//        Cursor cursor = databaseRead.rawQuery(query, null);
-        //получаем набор строк
-        //считаем количество строк
-        //умножаем на 4
+        Cursor cursor = associationDatabase.rawQuery(query, null);
+		count = cursor.getCount()*4;
         return count;
     }
 
@@ -364,14 +363,14 @@ public class DataBaseLogic {
      * прогресса игры. <br><b>Должен вызываться после прохождения очередного
      * уровня.</b>
      */
-    public void checkPictures(int countAllPictures) {
+    public void checkCountPictures(int countAllPictures) {
         int count = 0;
-        String query = "select * from usedPictures";
-        //            Cursor cursor = databaseRead.rawQuery(selectQuery, null);
-        //получаем набор строк
-        //считаем количество строк
-        count = count * 2 + 8;
-        if (count > countAllPictures) {
+        String query = "select sum(count_pictures) as sum from Used_pictures";
+        Cursor cursor = stateOfGameDatabase.rawQuery(query, null);
+        cursor.moveToFirst();
+		count = cursor.getInt(cursor.getColumnIndex("sum"));
+		Log.d("GH", "sum"+count);
+        if ((count + 8) > countAllPictures) {
             clearGame();
         }
     }

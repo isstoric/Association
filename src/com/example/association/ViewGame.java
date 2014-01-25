@@ -100,8 +100,8 @@ public class ViewGame extends Activity implements View.OnClickListener {
 		
 		Log.d("ViewGame","before dbLogic");
 		dbLogic=new DataBaseLogic(this);
-
-		//Log.d("ViewGame","dblogic "+dbLogic.qwe());
+		dbLogic.checkCountPictures(dbLogic.countAllPictures());
+		dbLogic.checkCountPictures(dbLogic.countAllPictures());
 		answers=new ArrayList<String>();
 		for (int i=0;i<Config.countOfPair;i++){
 			ArrayList<String> onePair=dbLogic.getMainPictures(false, i);
