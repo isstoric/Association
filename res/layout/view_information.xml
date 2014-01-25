@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     android:orientation="horizontal"
     android:gravity="center"
-    android:background="@drawable/wood_texture"
+    
     >
     
 	    <TextView 

@@ -7,11 +7,12 @@
     <string name="ButtonNewGame">Новая игра</string>
     <string name="ButtonContinue">Продолжить</string>
     <string name="ButtonRegulation">Правила</string>
+    <string name="ButtonHelp">Подсказка</string>
     <string name="ButtonInformation">О программе</string>
     <string name="ButtonEasy">Легкая</string>
     <string name="ButtonMedium">Средняя</string>
     <string name="ButtonHard">Сложная</string>
-    <string name="TextRegulations">olololo</string>
+    <string name="TextRegulations">Предлагаем тебе сыграть в интересную логическую игру для детей "Подбери пару", в которой тебе предстоит проявить всю свою сообразительность! В каждом из трёх уровней ты увидишь 8 квадратов, соединенных попарно. На левом квадрате уже нарисована картинка, а правый пока еще пустой. Твоя задача - подобрать такую картинку на правом квадрате, которая составит логическую пару с картинкой на левом квадрате. Для этого нужно просто нажимать по квадрату до тех пор, пока не появится правильный вариант. Помни, что в каждом уровне нужно составить четыре правильные пары, чтобы перейти к следующему уровню. Если ты не можешь отгадать правильную картинку, то можешь использовать подсказку, которая укажет тебе квадрат в котором закралась ошибка.</string>
     <string name="ButtonStatistics">Статистика</string>
     <string name="ButtonMusic">Музыка</string>
     

@@ -16,40 +16,38 @@
 		android:layout_marginBottom="10sp"
         >
         
-        <Button
+        <ImageView
             android:id="@+id/Window10"
             android:layout_height="80dp"
             android:layout_width="80dp"
-            android:background="@drawable/pergament"
             android:textStyle="normal"
             android:layout_marginRight="2sp"
             >
-        </Button>
+        </ImageView>
 
         
-        <Button
+        <ImageView
             android:id="@+id/Window11"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/pergament"
+            android:src="@drawable/vopros"
             android:textStyle="bold"
             android:layout_marginRight="10sp"/>
         
-         <Button
+         <ImageView
             android:id="@+id/Window20"
             android:layout_height="80dp"
-            android:layout_width="80dp"
-            android:background="@drawable/pergament"
+            android:layout_width="80dp"            
             android:textStyle="normal"
             android:layout_marginRight="2sp"
             >
-        </Button>
+        </ImageView>
         
-        <Button
+        <ImageView
             android:id="@+id/Window21"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/pergament"
+            android:src="@drawable/vopros"
             android:textStyle="bold"
             />
 
@@ -75,38 +73,36 @@
 	android:layout_marginRight="20sp"
 	android:layout_marginBottom="10sp">
 
-             <Button
+             <ImageView
             android:id="@+id/Window30"
             android:layout_height="80dp"
             android:layout_width="80dp"
-            android:background="@drawable/pergament"
             android:textStyle="normal"
             android:layout_marginRight="2sp"
             >
-        </Button>
+        </ImageView>
 
-             <Button
+             <ImageView
                  android:id="@+id/Window31"
                  android:layout_width="80dp"
                  android:layout_height="80dp"
                  android:layout_marginRight="10sp"
-                 android:background="@drawable/pergament"
+                 android:src="@drawable/vopros"
                  android:textStyle="bold" />
          
-         <Button
+         <ImageView
             android:id="@+id/Window40"
             android:layout_height="80dp"
             android:layout_width="80dp"
-            android:background="@drawable/pergament"
             android:textStyle="normal"
             android:layout_marginRight="2sp">
-        </Button>
+        </ImageView>
         
-        <Button
+        <ImageView
             android:id="@+id/Window41"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/pergament"
+            android:src="@drawable/vopros"
             android:textStyle="bold"
             />
         
@@ -120,10 +116,10 @@
 	android:layout_marginBottom="10sp">
 
              <Button
-            android:id="@+id/ButtonRegulations"
-            android:text="@string/ButtonRegulation"
+            android:id="@+id/ButtonHelp"
+            android:text="@string/ButtonHelp"
             android:layout_height="40dp"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:background="@drawable/pergament"
             android:textStyle="normal"
             android:layout_marginLeft="-150sp"

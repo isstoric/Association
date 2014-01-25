@@ -11,8 +11,9 @@ public abstract class Config {
 	public static final Boolean SOUND_ON=true;
 	public static final Boolean SOUND_OFF=false;
 	public static final int FIRST_LEVEL=1;
-	public static final String EASY = "easy";
-	public static final String MEDIUM = "medium";
-	public static final String HARD = "hard";
+	public static final int EASY = 4;
+	public static final int MEDIUM = 6;
+	public static final int HARD = 8;
+	public static final int countOfPair = 4;
 
 }

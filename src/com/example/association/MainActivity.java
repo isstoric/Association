@@ -66,7 +66,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	    	ButtonContinue.setEnabled(true);
 	    }
 	}
-		
+	
+
 	
 	@Override
 	public void onClick(View v) {
