@@ -38,6 +38,7 @@ public class ViewGame extends Activity implements View.OnClickListener {
 	ArrayList<ArrayList<String>> rightImages;//массив из всех наборов правых картинок
 	ArrayList<Boolean> flagForAnswers;
 	DataBaseLogic dbLogic;
+	int helpPlace;//номер пары,на которой была вызвана подсказка
 	
 	
 	@Override
@@ -95,16 +96,18 @@ public class ViewGame extends Activity implements View.OnClickListener {
 		
 		settings = getSharedPreferences(Config.APP_PREFERENCES, Context.MODE_PRIVATE);
 		rightImages=new ArrayList<ArrayList<String>>();
+		helpPlace=-1; 
 		
 		setFlags();
 		
 		Log.d("ViewGame","before dbLogic");
 		dbLogic=new DataBaseLogic(this);
-		dbLogic.checkCountPictures(dbLogic.countAllPictures());
-		dbLogic.checkCountPictures(dbLogic.countAllPictures());
+		Boolean currentState=dbLogic.getCurrentState();
+		
+		
 		answers=new ArrayList<String>();
 		for (int i=0;i<Config.countOfPair;i++){
-			ArrayList<String> onePair=dbLogic.getMainPictures(false, i);
+			ArrayList<String> onePair=dbLogic.getMainPictures(currentState, i+1);
 			Log.d("ViewGame","onePair "+onePair);
 			Drawable leftImg=getImage(onePair.get(0));
 			leftViews.get(i).setImageDrawable(leftImg);
@@ -118,7 +121,7 @@ public class ViewGame extends Activity implements View.OnClickListener {
 		Log.d("ViewGame","count="+countOfRightImg);
 		
 		//setExtra();
-		allExtras=dbLogic.getExtraPictures(false, countOfRightImg);
+		allExtras=dbLogic.getExtraPictures(currentState, countOfRightImg);
 		int j=0;
 		for(int i=0;i<Config.countOfPair;i++){
 			ArrayList<String> rights=new ArrayList<String>();
@@ -240,6 +243,7 @@ public void checkAnswers(){
 	if(countOfRightAnswers==Config.countOfPair){
 		Log.d("ViewGame","OK!!!");		
 		AlertDialog.Builder builder = new AlertDialog.Builder(ViewGame.this);
+		//TODO запихать в strings
 		builder.setTitle("Уровень пройден!")
 				.setMessage("Ваше время: ололо")
 				.setCancelable(false)
@@ -247,6 +251,8 @@ public void checkAnswers(){
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								dbLogic.clearCurrentState();
+								//проверка,достаточно ли картинок для формирования следующего уровня
+								dbLogic.checkCountPictures(settings.getInt(Config.APP_PREFERENCES_COUNT_OF_PICTURES, 0));
 								int currentLevel=settings.getInt(Config.APP_PREFERENCES_LEVEL, 1);
 								Editor editor = settings.edit();
 								editor.putInt(Config.APP_PREFERENCES_LEVEL, currentLevel++);
@@ -263,18 +269,23 @@ public void checkAnswers(){
 }
 
 public void giveRandomHelp(){
-	Log.d("ViewGame","giveRandomHelp");
+	if(helpPlace==-1){
 	ArrayList<Integer> wrongPair=new ArrayList<Integer>();
 	for(int i=0;i<Config.countOfPair;i++){
 		if(!flagForAnswers.get(i)){
 			wrongPair.add(i);
 		}
 	}
-	Log.d("ViewGame","wrongPairs:"+wrongPair);
-	Log.d("ViewGame","wrongPairs size:"+wrongPair.size());
 	int place=rand.nextInt(wrongPair.size());
-	Log.d("ViewGame","place="+place);
 	rightViews.get(wrongPair.get(place)).setImageResource(R.drawable.help);
+	helpPlace=wrongPair.get(place);
+	}
+}
+
+public void checkHelpPlace(int viewPlace){
+	if(viewPlace==helpPlace){
+		helpPlace=-1;
+	}
 }
 	@Override
 	public void onClick(View v) {
@@ -283,24 +294,28 @@ public void giveRandomHelp(){
 		//обработка нажатия кнопок
 		
 		case R.id.Window11:
+			checkHelpPlace(0);
 			changeImage(0);		
 			checkAnswers();
 			break;			
 		case R.id.Window21:
+			checkHelpPlace(1);
 			changeImage(1);	
 			checkAnswers();
 			break;
 		case R.id.Window31:
+			checkHelpPlace(2);
 			changeImage(2);	
 			checkAnswers();
 			break;
 		case R.id.Window41:
+			checkHelpPlace(3);
 			changeImage(3);	
 			checkAnswers();
 			break;
 			
 		case R.id.ButtonHelp:
-			//время увеличить
+			//TODO время увеличить
 			giveRandomHelp();
 			break;
 				

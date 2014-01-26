@@ -52,6 +52,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 			editor.putBoolean(Config.APP_PREFERENCES_SOUND, Config.SOUND_ON);
 			editor.apply();
 	    }	 
+	    if(!settings.contains(Config.APP_PREFERENCES_COUNT_OF_PICTURES)){
+	    DataBaseLogic dbLogic=new DataBaseLogic(this);
+		int countOfPictures=dbLogic.countAllPictures();
+		Log.d("MainActivity","count of all pictures="+countOfPictures);
+		Editor editor = settings.edit();
+		editor.putInt(Config.APP_PREFERENCES_COUNT_OF_PICTURES, countOfPictures);
+		editor.apply();
+		}
 	    
 	}
 	

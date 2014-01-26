@@ -69,7 +69,8 @@ public class DataBaseLogic {
    
     /**
      * ѕолучает пары картинок-ассоциаций.
-     * @param numberOfCouple номер пары;
+     * @param numberOfCouple номер пары,
+     * <b>значение должно лежать в [1, 4]</b>;
      * @param currentState <ul>
      * <li><b>true</b>, игра была остановлена на
      * каком-то уровне;</li>
@@ -130,11 +131,8 @@ public class DataBaseLogic {
     			idRandomAssociation = (int) (Math.random() * cursorFindNotUsedAssociation.getCount());
     			cursorFindNotUsedAssociation.moveToFirst();
         		cursorFindNotUsedAssociation.moveToPosition(idRandomAssociation);
-//        		idRandomAssociation++;//чтобы не смещалс€ индекс
         		idRandomAssociation = cursorFindNotUsedAssociation.getInt(cursorFindNotUsedAssociation.getColumnIndex(ID_ASSOCIATION));
         		randomAssociation = cursorFindNotUsedAssociation.getString(cursorFindNotUsedAssociation.getColumnIndex(ASSOCIATION_PICTURES));
-       		 	Log.d("MainActivity","idRandomAssociation"+idRandomAssociation);
-       		 	Log.d("MainActivity","randomAssociation"+randomAssociation);
         		cursorFindNotUsedAssociation.close();
     		}
             //смотрим, использовали ли мы раньше эту ассоциацию
@@ -172,9 +170,6 @@ public class DataBaseLogic {
         			cursorUsedAssociation.moveToFirst();
         			String temp = cursorUsedAssociation.getString(cursorUsedAssociation.getColumnIndex(USED_FIRST_COUPLE));
         			listUsedPictures = getFileNamesFromRow(temp);
-        			Log.d("MainActivity","listUsedPictures"+listUsedPictures);
-        	        Log.d("MainActivity","listRandomPictures"+listRandomPictures);
-        	        Log.d("MainActivity","id"+idRandomAssociation);
         			cursorUsedAssociation.close();
         			//оставл€ем только неиспользованные картинки
         			for(String i: listUsedPictures){
@@ -197,34 +192,8 @@ public class DataBaseLogic {
         }
         return associationPictures;
     }
-//    
-//    public ArrayList<ArrayList<String>> qwe() {
-//        ArrayList<String> first = new ArrayList<String>();
-//        ArrayList<String> second = new ArrayList<String>();
-//        ArrayList<String> third = new ArrayList<String>();
-//        ArrayList<String> fourth = new ArrayList<String>();
-//        ArrayList<ArrayList<String>> count = new ArrayList<ArrayList<String>>();
-//           String query = "select * from Used_pictures";
-//           Cursor cursor = stateOfGameDatabase.rawQuery(query, null);
-//     cursor.moveToFirst();
-//     do {
-//      first.add(cursor.getString(cursor.getColumnIndex(USED_FIRST_COUPLE)));
-//      second.add(cursor.getString(cursor.getColumnIndex(USED_SECOND_PICTURES)));
-//      third.add(cursor.getString(cursor.getColumnIndex(USED_ID_ASSOCIATION)));
-//      fourth.add(cursor.getString(cursor.getColumnIndex(USED_COUNT_PICTURES)));
-//     } while (cursor.moveToNext());
-//     count.add(new ArrayList<String>());
-//     count.add(new ArrayList<String>());
-//     count.add(new ArrayList<String>());
-//     count.add(new ArrayList<String>());
-//     count.add(first);
-//     count.add(second);
-//     count.add(third);
-//     count.add(fourth);
-//           return count;
-//       }
-
-    /**
+    
+     /**
      * ѕолучает лист из экстра картинок дл€ всего уровн€.
      *
      * @param currentState <ul>
@@ -294,7 +263,7 @@ public class DataBaseLogic {
         		}
 			}
             //записываем в базу Current_state
-            int count = 0;
+            int count = 1;
             ArrayList<String> insert = new ArrayList<String>();
             ArrayList<String> temp = new ArrayList<String>();
             for (String i : extraPictures) {
@@ -303,7 +272,7 @@ public class DataBaseLogic {
                 if (count == countExtraPictures) {
                     insert.add(getStringOfFileNamesFromList(temp));
                     temp.clear();
-                    count = 0;
+                    count = 1;
                 }
             }
             int numberOfCouple = 1;
@@ -328,6 +297,7 @@ public class DataBaseLogic {
         String query2 = "delete from Used_pictures";
 	    stateOfGameDatabase.execSQL(query1);
 	    stateOfGameDatabase.execSQL(query2);
+		Log.d("DataBaseLogic", "New game. Databases is cleared.");
         return true;
     }
 
@@ -341,6 +311,7 @@ public class DataBaseLogic {
     public boolean clearCurrentState() {
         String query = "delete from Current_state";
 	    stateOfGameDatabase.execSQL(query);
+		Log.d("DataBaseLogic", "Level is passed. Database 'Current_state' is cleared.");
         return true;
     }
 
@@ -362,6 +333,7 @@ public class DataBaseLogic {
      * уровн€. ≈сли картинок недостаточно, то вызываетс€ метод дл€ очищени€
      * прогресса игры. <br><b>ƒолжен вызыватьс€ после прохождени€ очередного
      * уровн€.</b>
+     * @param countAllPictures количество всех картинок, содержащихс€ в Ѕƒ
      */
     public void checkCountPictures(int countAllPictures) {
         int count = 0;
@@ -369,9 +341,9 @@ public class DataBaseLogic {
         Cursor cursor = stateOfGameDatabase.rawQuery(query, null);
         cursor.moveToFirst();
 		count = cursor.getInt(cursor.getColumnIndex("sum"));
-		Log.d("GH", "sum"+count);
         if ((count + 8) > countAllPictures) {
             clearGame();
+    		Log.d("DataBaseLogic", "Pictures ended. Databases is cleared.");
         }
     }
     

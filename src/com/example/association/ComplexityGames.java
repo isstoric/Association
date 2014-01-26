@@ -33,7 +33,9 @@ public class ComplexityGames extends Activity implements View.OnClickListener {
 		settings = getSharedPreferences(Config.APP_PREFERENCES, Context.MODE_PRIVATE);
 		Log.d("ComplexityGames","onCreate");
 		
-		//обнулять таблички епта current and used
+		//обнуляем таблицы 
+		DataBaseLogic dbLogic=new DataBaseLogic(this);
+		dbLogic.clearGame();
 		}
 
 
