@@ -58,7 +58,7 @@
             android:id="@+id/timer"
             android:textStyle="bold"
             android:textSize="20dp"
-            android:layout_marginLeft="35dp"
+            android:layout_marginLeft="28dp"
             />
         
       </TableRow>
@@ -127,7 +127,7 @@
             >
         </Button>
 
-        <Button
+        <ImageView
             android:id="@+id/ButtonMusik"            
             android:layout_width="80dp"
             android:layout_height="40dp"

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 public class DataBaseLogic {
 	
@@ -297,7 +296,6 @@ public class DataBaseLogic {
         String query2 = "delete from Used_pictures";
 	    stateOfGameDatabase.execSQL(query1);
 	    stateOfGameDatabase.execSQL(query2);
-		Log.d("DataBaseLogic", "New game. Databases is cleared.");
         return true;
     }
 
@@ -311,7 +309,6 @@ public class DataBaseLogic {
     public boolean clearCurrentState() {
         String query = "delete from Current_state";
 	    stateOfGameDatabase.execSQL(query);
-		Log.d("DataBaseLogic", "Level is passed. Database 'Current_state' is cleared.");
         return true;
     }
 
@@ -343,7 +340,6 @@ public class DataBaseLogic {
 		count = cursor.getInt(cursor.getColumnIndex("sum"));
         if ((count + 8) > countAllPictures) {
             clearGame();
-    		Log.d("DataBaseLogic", "Pictures ended. Databases is cleared.");
         }
     }
     

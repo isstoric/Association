@@ -7,18 +7,16 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.view.Menu;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
 	SharedPreferences settings;
 	Button ButtonContinue;
+	ImageView ButtonMusic;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +37,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	    Button ButtonStatistics = (Button) findViewById(R.id.ButtonStatistics);
 	    ButtonStatistics.setOnClickListener(this);
 	    
-	    ImageView ButtonMusic = (ImageView) findViewById(R.id.ButtonMusic);
+	    ButtonMusic = (ImageView) findViewById(R.id.ButtonMusic);
 	    ButtonMusic.setOnClickListener(this);
 	    
 	    settings = getSharedPreferences(Config.APP_PREFERENCES, Context.MODE_PRIVATE);
@@ -51,10 +49,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 			editor.putBoolean(Config.APP_PREFERENCES_SOUND, Config.SOUND_ON);
 			editor.apply();
 	    }	 
+	    setMusicImage();
+	    
+	    
 	    if(!settings.contains(Config.APP_PREFERENCES_COUNT_OF_PICTURES)){
 	    DataBaseLogic dbLogic=new DataBaseLogic(this);
 		int countOfPictures=dbLogic.countAllPictures();
-		Log.d("MainActivity","count of all pictures="+countOfPictures);
 		Editor editor = settings.edit();
 		editor.putInt(Config.APP_PREFERENCES_COUNT_OF_PICTURES, countOfPictures);
 		editor.apply();
@@ -65,16 +65,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
-		super.onResume();
-		
-		Log.d("MainActivity","level:"+settings.getAll());
-		
+		super.onResume();		
 		if(settings.contains(Config.APP_PREFERENCES_LEVEL)){
 	    	ButtonContinue.setEnabled(true);
 	    }
 	}
 	
-
+public void  setMusicImage(){
+	if(settings.getBoolean(Config.APP_PREFERENCES_SOUND, true)){
+		ButtonMusic.setImageResource(R.drawable.sound1);
+	}else{
+		ButtonMusic.setImageResource(R.drawable.sound2);
+	}
+}
 	
 	@Override
 	public void onClick(View v) {
@@ -101,19 +104,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
 				break;
 			
 			case R.id.ButtonStatistics:
-				//статистика
+				Intent intent4 = new Intent();
+				intent4.setClass(this, StatisticsActivity.class);
+				startActivity(intent4);
 				break;
-			case R.id.ButtonMusik:
+			case R.id.ButtonMusic:
 				if(settings.getBoolean(Config.APP_PREFERENCES_SOUND, true)){
 					Editor editor = settings.edit();
 					editor.putBoolean(Config.APP_PREFERENCES_SOUND, Config.SOUND_OFF);
 					editor.apply();
-					//картиночку поменять надо бы
+					ButtonMusic.setImageResource(R.drawable.sound2);
 					}
 				else{
 					Editor editor = settings.edit();
 					editor.putBoolean(Config.APP_PREFERENCES_SOUND, Config.SOUND_ON);
 					editor.apply();
+					ButtonMusic.setImageResource(R.drawable.sound1);
 				}
 				break;
 			

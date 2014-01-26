@@ -7,14 +7,13 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
-//import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.view.*;
 import android.widget.Button;
 
 public class ComplexityGames extends Activity implements View.OnClickListener {
 
 	SharedPreferences settings;
+	DataBaseLogic dbLogic;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,20 +30,18 @@ public class ComplexityGames extends Activity implements View.OnClickListener {
 		Button ButtonHard = (Button) findViewById(R.id.ButtonHard);
 		ButtonHard.setOnClickListener(this);
 		settings = getSharedPreferences(Config.APP_PREFERENCES, Context.MODE_PRIVATE);
-		Log.d("ComplexityGames","onCreate");
 		
 		//обнуляем таблицы 
-		DataBaseLogic dbLogic=new DataBaseLogic(this);
-		dbLogic.clearGame();
+		dbLogic=new DataBaseLogic(this);
 		}
 
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		Editor editor = settings.edit();
 		editor.putInt(Config.APP_PREFERENCES_LEVEL, Config.FIRST_LEVEL);
 		editor.apply();
+		dbLogic.clearGame();
 		switch(v.getId()){
 		case R.id.ButtonEasy:
 			//при нажатии формируем легкую игру
