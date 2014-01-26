@@ -19,11 +19,14 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 //import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 
 
@@ -39,12 +42,13 @@ public class ViewGame extends Activity implements View.OnClickListener {
 	ArrayList<Boolean> flagForAnswers;
 	DataBaseLogic dbLogic;
 	int helpPlace;//номер пары,на которой была вызвана подсказка
-	
+	Chronometer mchronometer;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d("ViewGame","onCreate");
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.view_game);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);	
 		
@@ -91,9 +95,6 @@ public class ViewGame extends Activity implements View.OnClickListener {
 		ButtonHelp.setOnClickListener(this);
 
 		
-		Button ButtonTimer = (Button) findViewById(R.id.ButtonTimer);
-		ButtonTimer.setOnClickListener(this);
-		
 		settings = getSharedPreferences(Config.APP_PREFERENCES, Context.MODE_PRIVATE);
 		rightImages=new ArrayList<ArrayList<String>>();
 		helpPlace=-1; 
@@ -136,7 +137,8 @@ public class ViewGame extends Activity implements View.OnClickListener {
 		}
 		Log.d("ViewGame","rightsImages "+rightImages);
 		
-	
+		mchronometer = (Chronometer) findViewById(R.id.timer);
+		mchronometer.start();
 		
 		}
 	public void setFlags(){
@@ -233,6 +235,50 @@ public void changeImage(int numberOfPair){
 	extra.add(imgName);
 	rightImages.set(numberOfPair, extra);
 }
+public String outputTime(long millis){
+	long minutes = millis/1000/60; 
+	long seconds = (millis/1000)-(minutes*60);
+	String time;
+	if(minutes>1){
+		time=" "+minutes+" мин "+seconds+" сек";
+	}
+	else time=" "+seconds+ " сек";
+	return time;
+	}
+
+public void statisticTime(long millis){
+	int complexity=settings.getInt(Config.APP_PREFERENCES_COMPLEXITY, 1);
+	switch (complexity) {
+	case Config.EASY:
+		int easy_time=settings.getInt(Config.APP_PREFERENCES_EASY_TIME, 0);
+		if(easy_time>millis){
+			Editor editor = settings.edit();
+			editor.putLong(Config.APP_PREFERENCES_EASY_TIME, millis);
+			editor.apply();
+		}
+		break;
+	case Config.MEDIUM:
+		int mediumTime=settings.getInt(Config.APP_PREFERENCES_MEDIUM_TIME, 0);
+		if(mediumTime>millis){
+			Editor editor = settings.edit();
+			editor.putLong(Config.APP_PREFERENCES_MEDIUM_TIME, millis);
+			editor.apply();
+		}
+		break;
+	case Config.HARD:
+		int hardTime=settings.getInt(Config.APP_PREFERENCES_HARD_TIME, 0);
+		if(hardTime>millis){
+			Editor editor = settings.edit();
+			editor.putLong(Config.APP_PREFERENCES_HARD_TIME, millis);
+			editor.apply();
+		}
+		break;
+	default:
+		break;
+	}
+	
+}
+
 public void checkAnswers(){
 	int countOfRightAnswers=0;
 	for(int i=0;i<Config.countOfPair;i++){
@@ -240,12 +286,20 @@ public void checkAnswers(){
 			countOfRightAnswers++;
 		}
 	}
-	if(countOfRightAnswers==Config.countOfPair){
+	
+
+if(countOfRightAnswers==Config.countOfPair){
+		mchronometer.stop();
+		long elapsedMillis = SystemClock.elapsedRealtime() - mchronometer.getBase(); 
+		statisticTime(elapsedMillis);
+		mchronometer.setBase(SystemClock.elapsedRealtime());
+		Log.d("Time",""+elapsedMillis/1000);
 		Log.d("ViewGame","OK!!!");		
 		AlertDialog.Builder builder = new AlertDialog.Builder(ViewGame.this);
 		//TODO запихать в strings
+		String finishTime=outputTime(elapsedMillis);
 		builder.setTitle("Уровень пройден!")
-				.setMessage("Ваше время: ололо")
+				.setMessage("Ваше время:"+ finishTime)
 				.setCancelable(false)
 				.setNegativeButton("Следующий уровень",
 						new DialogInterface.OnClickListener() {

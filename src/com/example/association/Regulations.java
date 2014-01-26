@@ -6,13 +6,14 @@ import android.os.Bundle;
 //import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.view.Menu;
 //import android.view.View;
+import android.view.Window;
 
 public class Regulations extends Activity{
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.view_regulations);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		

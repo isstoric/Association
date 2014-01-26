@@ -5,15 +5,16 @@
     android:layout_height="fill_parent"
     android:orientation="horizontal"
     android:gravity="center"
-    android:background="@drawable/wood_texture"
+    android:background="@drawable/texture"
     >
     
 <TableRow 
         android:id="@+id/StringGame"
         android:layout_height="fill_parent"
-		android:layout_width="fill_parent"
-		android:gravity="center"
-		android:layout_marginBottom="10sp"
+  android:layout_width="fill_parent"
+  android:gravity="center"
+  android:layout_marginBottom="20dp"
+  android:layout_marginTop="10dp"
         >
         
         <ImageView
@@ -21,7 +22,8 @@
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:textStyle="normal"
-            android:layout_marginRight="2sp"
+            android:layout_marginRight="-7dp"
+            android:layout_marginLeft="10dp"
             >
         </ImageView>
 
@@ -32,14 +34,14 @@
             android:layout_height="80dp"
             android:src="@drawable/vopros"
             android:textStyle="bold"
-            android:layout_marginRight="10sp"/>
+            android:layout_marginRight="20dp"/>
         
          <ImageView
             android:id="@+id/Window20"
             android:layout_height="80dp"
             android:layout_width="80dp"            
             android:textStyle="normal"
-            android:layout_marginRight="2sp"
+            android:layout_marginRight="2dp"
             >
         </ImageView>
         
@@ -49,17 +51,14 @@
             android:layout_height="80dp"
             android:src="@drawable/vopros"
             android:textStyle="bold"
+           
             />
 
-        <Button
-            android:id="@+id/ButtonTimer"
-            android:text="Timer"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/pergament"
+        <Chronometer
+            android:id="@+id/timer"
             android:textStyle="bold"
-            android:layout_marginLeft="45sp"
-            android:layout_marginRight="-45sp"
+            android:textSize="20dp"
+            android:layout_marginLeft="35dp"
             />
         
       </TableRow>
@@ -67,18 +66,19 @@
     <TableRow 
     android:id="@+id/StringGame2"
     android:layout_height="fill_parent"
-	android:layout_width="fill_parent"
-	android:gravity="center"
-	android:layout_marginLeft="-20sp"
-	android:layout_marginRight="20sp"
-	android:layout_marginBottom="10sp">
+ android:layout_width="fill_parent"
+ android:gravity="center"
+ android:layout_marginLeft="-20dp"
+ android:layout_marginRight="20dp"
+ android:layout_marginBottom="20dp">
 
              <ImageView
             android:id="@+id/Window30"
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:textStyle="normal"
-            android:layout_marginRight="2sp"
+            android:layout_marginRight="-7dp"
+            android:layout_marginLeft="10dp"
             >
         </ImageView>
 
@@ -86,7 +86,7 @@
                  android:id="@+id/Window31"
                  android:layout_width="80dp"
                  android:layout_height="80dp"
-                 android:layout_marginRight="10sp"
+                 android:layout_marginRight="20dp"
                  android:src="@drawable/vopros"
                  android:textStyle="bold" />
          
@@ -95,7 +95,7 @@
             android:layout_height="80dp"
             android:layout_width="80dp"
             android:textStyle="normal"
-            android:layout_marginRight="2sp">
+            android:layout_marginRight="2dp">
         </ImageView>
         
         <ImageView
@@ -111,30 +111,28 @@
      <TableRow 
     android:id="@+id/StringMenu"
     android:layout_height="fill_parent"
-	android:layout_width="fill_parent"
-	android:gravity="center"
-	android:layout_marginBottom="10sp">
+ android:layout_width="fill_parent"
+ android:gravity="center"
+ android:layout_marginBottom="20dp">
 
              <Button
             android:id="@+id/ButtonHelp"
             android:text="@string/ButtonHelp"
             android:layout_height="40dp"
             android:layout_width="100dp"
-            android:background="@drawable/pergament"
+            android:background="@drawable/texture_button"
             android:textStyle="normal"
-            android:layout_marginLeft="-150sp"
-            android:layout_marginRight="150sp"
+            android:layout_marginLeft="-150dp"
+            android:layout_marginRight="150dp"
             >
         </Button>
 
         <Button
-            android:id="@+id/ButtonMusik"
-            android:text="@string/ButtonMusic"
+            android:id="@+id/ButtonMusik"            
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="150sp"
-            android:layout_marginRight="-150sp"
-            android:background="@drawable/pergament"
-            android:textStyle="bold" />
-	</TableRow>
+            android:layout_marginLeft="150dp"
+            android:layout_marginRight="-150dp"
+            android:background="@drawable/sound1" />
+ </TableRow>
 </TableLayout>

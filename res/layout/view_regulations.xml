@@ -1,18 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_regulations"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal"
     android:gravity="center"
-    android:background="@drawable/wood_texture"
+    android:background="@drawable/texture"
     >
     
-	    <TextView 
-	      android:id="@+id/text_regulation"
-	      android:layout_width="wrap_content"
-	      android:layout_height="wrap_content"
-	      android:text="@string/TextRegulations"
-	     />
-	    
-    </LinearLayout>
+     <TextView 
+       android:id="@+id/text_regulation"
+       android:layout_marginTop="20dp"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/TextRegulations"
+       android:layout_marginLeft="15dp"
+       android:layout_marginRight="15dp"
+       android:textStyle="bold"
+      />
+     
+    </ScrollView>

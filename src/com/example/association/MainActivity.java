@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.view.Menu;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -21,7 +23,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		
@@ -34,13 +36,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	    Button ButtonRegulations = (Button) findViewById(R.id.ButtonRegulations);
 	    ButtonRegulations.setOnClickListener(this);
 	    
-	    Button ButtonInformation = (Button) findViewById(R.id.ButtonInformation);
-	    ButtonInformation.setOnClickListener(this);
-	    
 	    Button ButtonStatistics = (Button) findViewById(R.id.ButtonStatistics);
 	    ButtonStatistics.setOnClickListener(this);
 	    
-	    Button ButtonMusic = (Button) findViewById(R.id.ButtonMusic);
+	    ImageView ButtonMusic = (ImageView) findViewById(R.id.ButtonMusic);
 	    ButtonMusic.setOnClickListener(this);
 	    
 	    settings = getSharedPreferences(Config.APP_PREFERENCES, Context.MODE_PRIVATE);
@@ -100,17 +99,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 				startActivity(intent3);
 				
 				break;
-			case R.id.ButtonInformation:
-				//запуск страницы с информацией о программе
-				Intent intent4 = new Intent();
-				intent4.setClass(this, Information.class);
-				startActivity(intent4);
-				;
-				break;
+			
 			case R.id.ButtonStatistics:
 				//статистика
 				break;
-			case R.id.ButtonMusic:
+			case R.id.ButtonMusik:
 				if(settings.getBoolean(Config.APP_PREFERENCES_SOUND, true)){
 					Editor editor = settings.edit();
 					editor.putBoolean(Config.APP_PREFERENCES_SOUND, Config.SOUND_OFF);

@@ -19,9 +19,9 @@ public class ComplexityGames extends Activity implements View.OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.complexity_game);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		
 		Button ButtonEasy = (Button) findViewById(R.id.ButtonEasy);
 		ButtonEasy.setOnClickListener(this);
 		
