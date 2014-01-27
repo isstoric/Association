@@ -105,7 +105,7 @@ public void  setMusicImage(){
 			
 			case R.id.ButtonStatistics:
 				Intent intent4 = new Intent();
-				intent4.setClass(this, StatisticsActivity.class);
+				intent4.setClass(this, RecordsActivity.class);
 				startActivity(intent4);
 				break;
 			case R.id.ButtonMusic:

@@ -28,7 +28,7 @@
         <activity android:name="ViewGame"
             android:noHistory="true"></activity>
         <activity android:name="Regulations"></activity>
-        <activity android:name="StatisticsActivity"
+        <activity android:name="RecordsActivity"
             android:screenOrientation="landscape">            
         </activity>
     </application>

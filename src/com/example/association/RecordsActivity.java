@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.widget.TextView;
 
-public class StatisticsActivity extends Activity{
+public class RecordsActivity extends Activity{
 	SharedPreferences settings;
 	TextView easyTime;
 	TextView mediumTime;
@@ -17,7 +17,7 @@ public class StatisticsActivity extends Activity{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.statistics);
+		setContentView(R.layout.records);
 		
 		easyTime=(TextView) findViewById(R.id.Easy);
 		mediumTime=(TextView) findViewById(R.id.Medium);
